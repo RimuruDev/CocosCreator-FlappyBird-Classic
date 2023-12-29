@@ -5,6 +5,7 @@ library/
 temp/
 local/
 build/
+builds/
 profiles/
 native
 **/[Tt]rash/
@@ -27,6 +28,7 @@ node_modules/
 *.moved-aside
 
 build/*
+builds/*
 *.xcworkspace
 *.mode1v3
 *.mode2v3
