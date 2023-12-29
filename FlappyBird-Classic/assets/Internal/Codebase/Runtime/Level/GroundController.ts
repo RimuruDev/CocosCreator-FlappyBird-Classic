@@ -6,26 +6,26 @@ const { ccclass, property } = _decorator;
 export class GroundController extends Component {
 
     @property({ type: Node, })
-    public GroundOne: Node;
+    public groundOne: Node;
 
     @property({ type: Node })
-    public GroundTwo: Node;
+    public groundTwo: Node;
 
     @property({ type: Node })
-    public GroundThree: Node;
+    public groundThree: Node;
 
-    public GroundWidthOne: number;
-    public GroundWidtTwo: number;
-    public GroundWidthThree: number;
+    public groundWidthOne: number;
+    public groundWidtTwo: number;
+    public groundWidthThree: number;
 
-    public TempStartLocationOne: Vec3 = new Vec3;
-    public TempStartLocationTwo: Vec3 = new Vec3;
-    public TempStartLocationThree: Vec3 = new Vec3;
+    public tempStartLocationOne: Vec3 = new Vec3;
+    public tempStartLocationTwo: Vec3 = new Vec3;
+    public tempStartLocationThree: Vec3 = new Vec3;
 
-    public GameSpeed: number = 50;
+    public gameSpeed: number = 50;
 
     protected onLoad(): void {
-        this.StartUp();
+        this.startUp();
     }
 
     protected start(): void {
@@ -38,9 +38,18 @@ export class GroundController extends Component {
 
     }
 
-    private StartUp(): void {
-        this.GroundWidthOne = this.GroundOne.getComponent(UITransform).width;
-        this.GroundWidtTwo = this.GroundTwo.getComponent(UITransform).width;
-        this.GroundWidthThree = this.GroundThree.getComponent(UITransform).width;
+    private startUp(): void {
+
+        this.groundWidthOne = this.groundOne.getComponent(UITransform).width;
+        this.groundWidtTwo = this.groundTwo.getComponent(UITransform).width;
+        this.groundWidthThree = this.groundThree.getComponent(UITransform).width;
+
+        this.tempStartLocationOne.x = 0;
+        this.tempStartLocationTwo.x = this.groundWidthOne;
+        this.tempStartLocationThree.x = this.groundWidthOne + this.groundWidthThree;
+
+        this.groundOne.setPosition(this.tempStartLocationOne);
+        this.groundTwo.setPosition(this.tempStartLocationTwo);
+        this.groundThree.setPosition(this.tempStartLocationThree);
     }
 }

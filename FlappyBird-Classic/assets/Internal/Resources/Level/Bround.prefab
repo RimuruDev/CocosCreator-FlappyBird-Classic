@@ -517,13 +517,13 @@
     "__prefab": {
       "__id__": 23
     },
-    "GroundOne": {
+    "groundOne": {
       "__id__": 2
     },
-    "GroundTwo": {
+    "groundTwo": {
       "__id__": 8
     },
-    "GroundThree": {
+    "groundThree": {
       "__id__": 14
     },
     "_id": ""
