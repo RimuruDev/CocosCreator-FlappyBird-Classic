@@ -47,7 +47,6 @@ Pods/*
 libs/
 bin/
 obj/
-assets/
 gen/
 out/
 .classpath
