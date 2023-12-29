@@ -1,4 +1,4 @@
-import { _decorator, Component, log, Node, UITransform, Vec3 } from 'cc';
+import { _decorator, Canvas, Component, director, log, Node, UITransform, Vec3 } from 'cc';
 
 const { ccclass, property } = _decorator;
 
@@ -22,6 +22,7 @@ export class GroundController extends Component {
     public tempStartLocationTwo: Vec3 = new Vec3;
     public tempStartLocationThree: Vec3 = new Vec3;
 
+    @property({ type: Number })
     public gameSpeed: number = 50;
 
     protected onLoad(): void {
@@ -32,6 +33,27 @@ export class GroundController extends Component {
     }
 
     protected update(deltaTime: number): void {
+
+        this.tempStartLocationOne = this.groundOne.position;
+        this.tempStartLocationTwo = this.groundTwo.position;
+        this.tempStartLocationThree = this.groundThree.position;
+
+        var delta: number = this.gameSpeed * deltaTime;
+        this.tempStartLocationOne -= delta;
+        this.tempStartLocationTwo -= delta;
+        this.tempStartLocationThree -= delta;
+
+        const scene = director.getScene();
+        const canvas = scene.getComponentInChildren(Canvas);
+
+        if (this.tempStartLocationOne.x <= (0 - this.groundWidthOne)) {
+
+            this.tempStartLocationOne.x =canvas.getComponent(UITransform).width;
+        }
+
+        this.groundOne.setPosition(this.tempStartLocationOne);
+        this.groundTwo.setPosition(this.tempStartLocationTwo);
+        this.groundThree.setPosition(this.tempStartLocationThree);
     }
 
     protected lateUpdate(deltaTime: number): void {
