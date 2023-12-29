@@ -14,6 +14,9 @@ export class GroundController extends Component {
     @property({ type: Node })
     public groundThree: Node;
 
+    @property({ type: Number })
+    public gameSpeed: number = 50;
+
     public groundWidthOne: number;
     public groundWidtTwo: number;
     public groundWidthThree: number;
@@ -21,9 +24,6 @@ export class GroundController extends Component {
     public tempStartLocationOne: Vec3 = new Vec3;
     public tempStartLocationTwo: Vec3 = new Vec3;
     public tempStartLocationThree: Vec3 = new Vec3;
-
-    @property({ type: Number })
-    public gameSpeed: number = 50;
 
     protected onLoad(): void {
         this.startUp();
@@ -46,22 +46,18 @@ export class GroundController extends Component {
         const scene = director.getScene();
         const canvas = scene.getComponentInChildren(Canvas);
 
-        if (this.tempStartLocationOne.x <= (0 - this.groundWidthOne))
+        if (this.tempStartLocationOne.x <= (-this.groundWidthOne))
             this.tempStartLocationOne.x = canvas.getComponent(UITransform).width;
 
-        if (this.tempStartLocationTwo.x <= (0 - this.groundWidtTwo))
+        if (this.tempStartLocationTwo.x <= (-this.groundWidtTwo))
             this.tempStartLocationTwo.x = canvas.getComponent(UITransform).width;
 
-        if (this.tempStartLocationThree.x <= (0 - this.groundWidthThree))
+        if (this.tempStartLocationThree.x <= (-this.groundWidthThree))
             this.tempStartLocationThree.x = canvas.getComponent(UITransform).width;
 
         this.groundOne.setPosition(this.tempStartLocationOne);
         this.groundTwo.setPosition(this.tempStartLocationTwo);
         this.groundThree.setPosition(this.tempStartLocationThree);
-    }
-
-    protected lateUpdate(deltaTime: number): void {
-
     }
 
     private startUp(): void {
