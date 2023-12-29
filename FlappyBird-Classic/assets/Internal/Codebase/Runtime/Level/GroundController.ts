@@ -39,17 +39,21 @@ export class GroundController extends Component {
         this.tempStartLocationThree = this.groundThree.position;
 
         var delta: number = this.gameSpeed * deltaTime;
-        this.tempStartLocationOne -= delta;
-        this.tempStartLocationTwo -= delta;
-        this.tempStartLocationThree -= delta;
+        this.tempStartLocationOne.x -= delta;
+        this.tempStartLocationTwo.x -= delta;
+        this.tempStartLocationThree.x -= delta;
 
         const scene = director.getScene();
         const canvas = scene.getComponentInChildren(Canvas);
 
-        if (this.tempStartLocationOne.x <= (0 - this.groundWidthOne)) {
+        if (this.tempStartLocationOne.x <= (0 - this.groundWidthOne))
+            this.tempStartLocationOne.x = canvas.getComponent(UITransform).width;
 
-            this.tempStartLocationOne.x =canvas.getComponent(UITransform).width;
-        }
+        if (this.tempStartLocationTwo.x <= (0 - this.groundWidtTwo))
+            this.tempStartLocationTwo.x = canvas.getComponent(UITransform).width;
+
+        if (this.tempStartLocationThree.x <= (0 - this.groundWidthThree))
+            this.tempStartLocationThree.x = canvas.getComponent(UITransform).width;
 
         this.groundOne.setPosition(this.tempStartLocationOne);
         this.groundTwo.setPosition(this.tempStartLocationTwo);
