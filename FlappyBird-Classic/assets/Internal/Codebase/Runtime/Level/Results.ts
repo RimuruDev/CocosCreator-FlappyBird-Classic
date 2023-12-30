@@ -1,4 +1,4 @@
-import { _decorator, Component, CCBoolean, Label, Node, TextAsset } from 'cc';
+import { _decorator, Component, Label, Node } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('Results')
@@ -26,7 +26,7 @@ export class Results extends Component {
     }
 
     public resetScore(): void {
-        
+
         this.updateScore(this.defaultScore);
         this.hideResult();
     }
@@ -36,6 +36,9 @@ export class Results extends Component {
     }
 
     public showResult(): void {
+
+        this.maxScore = Math.max(this.maxScore, this.currentScore);
+        this.bestScoreLabel.string = `High Score: ${this.maxScore}`;
         this.SetActiveAllLabels(true);
     }
 
@@ -45,7 +48,7 @@ export class Results extends Component {
 
     private SetActiveAllLabels(active: boolean): void {
 
-        this.bestScoreLabel.enabled = active;
-        this.tryAgainLabel.enabled = active;
+        this.bestScoreLabel.node.active = active;
+        this.tryAgainLabel.node.active = active;
     }
 }
