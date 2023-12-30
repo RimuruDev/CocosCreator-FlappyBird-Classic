@@ -1,8 +1,9 @@
-import { _decorator, CCInteger, Component, EventKeyboard, Input, input, Node, KeyCode } from 'cc';
+import { _decorator, CCInteger, Component, EventKeyboard, Input, input, Node, KeyCode, director } from 'cc';
 import { GroundController } from './Level/GroundController';
 import { Results } from './Level/Results';
 
 const { ccclass, property } = _decorator;
+const DEBUG_MODE = true;
 
 @ccclass('GameController')
 export class GameController extends Component {
@@ -21,10 +22,13 @@ export class GameController extends Component {
 
     protected onLoad(): void {
 
+        this.initListener();
+        this.results.resetScore();
+        director.pause();
     }
 
     protected update(deltaTime: number): void {
-        this.initListener();
+
     }
 
     private initListener(): void {
@@ -33,9 +37,14 @@ export class GameController extends Component {
 
     private startGame(): void {
 
+        this.results.hideResult();
+        director.resume();
     }
 
     private onKeyDown(event: EventKeyboard): void {
+
+        if (!DEBUG_MODE)
+            return;
 
         switch (event.keyCode) {
             case KeyCode.KEY_A:
@@ -48,13 +57,18 @@ export class GameController extends Component {
                 this.resetGame();
                 break
         }
+
     }
 
     private gameOver(): void {
 
+        this.results.showResult();
+        director.pause();
     }
 
     private resetGame(): void {
 
+        this.results.resetScore();
+        this.startGame();
     }
 }
