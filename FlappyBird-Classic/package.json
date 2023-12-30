@@ -2,6 +2,12 @@
   "name": "FlappyBird-Classic",
   "uuid": "a2312a68-2531-467e-b294-0e1d693b6556",
   "creator": {
-    "version": "3.8.1"
+    "version": "3.8.1",
+    "registry": {
+      "remote": {}
+    },
+    "dependencies": {
+      "plugin-import-2x": "1.1.10"
+    }
   }
 }
