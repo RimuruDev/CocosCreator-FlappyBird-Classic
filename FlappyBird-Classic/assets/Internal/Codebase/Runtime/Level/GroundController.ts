@@ -44,6 +44,7 @@ export class GroundController extends Component {
         this.tempStartLocations.forEach((location, index) => {
 
             location.x -= delta;
+            
             if (location.x <= (-this.groundWidths[index]))
                 location.x = canvasWidth;
 

@@ -1,4 +1,4 @@
-import { _decorator, CCInteger, Component, EventKeyboard, Input, input, Node, KeyCode, director } from 'cc';
+import { _decorator, CCInteger, Component, EventKeyboard, Input, input, KeyCode, director } from 'cc';
 import { GroundController } from './Level/GroundController';
 import { Results } from './Level/Results';
 
@@ -27,10 +27,6 @@ export class GameController extends Component {
         director.pause();
     }
 
-    protected update(deltaTime: number): void {
-
-    }
-
     private initListener(): void {
         input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
     }
@@ -47,12 +43,15 @@ export class GameController extends Component {
             return;
 
         switch (event.keyCode) {
+
             case KeyCode.KEY_A:
                 this.gameOver();
                 break
+
             case KeyCode.KEY_P:
                 this.results.addScore();
                 break
+
             case KeyCode.KEY_Q:
                 this.resetGame();
                 break
